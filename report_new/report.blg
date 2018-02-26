@@ -1,0 +1,58 @@
+This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: report.aux
+The style file: unsrt.bst
+Database file #1: trial.bib
+Warning--entry type for "sketchAndProject" isn't style-file defined
+--line 14 of file trial.bib
+Warning--entry type for "GD" isn't style-file defined
+--line 21 of file trial.bib
+Warning--empty journal in projectionFeasibility
+Warning--empty journal in kaczmarz
+Warning--empty journal in iterativeLinearSystems
+Name 1 in "Simon Lacoste-Julien, Mark Schmidt, and Francis Bach" has a comma at the end for entry SGD
+while executing---line 944 of file unsrt.bst
+Warning--empty journal in SGD
+Warning--empty journal in SAGA
+You've used 7 entries,
+            1791 wiz_defined-function locations,
+            486 strings with 4809 characters,
+and the built_in function-call counts, 977 in all, are:
+= -- 81
+> -- 32
+< -- 0
++ -- 15
+- -- 8
+* -- 21
+:= -- 175
+add.period$ -- 26
+call.type$ -- 7
+change.case$ -- 7
+chr.to.int$ -- 0
+cite$ -- 12
+duplicate$ -- 50
+empty$ -- 107
+format.name$ -- 8
+if$ -- 210
+int.to.chr$ -- 0
+int.to.str$ -- 7
+missing$ -- 5
+newline$ -- 43
+num.names$ -- 7
+pop$ -- 34
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 22
+stack$ -- 0
+substring$ -- 0
+swap$ -- 2
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 5
+while$ -- 7
+width$ -- 8
+write$ -- 77
+(There was 1 error message)
