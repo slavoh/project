@@ -18,7 +18,7 @@ Warning--empty journal in acceleration
 Warning--empty journal in kosto
 You've used 9 entries,
             1791 wiz_defined-function locations,
-            494 strings with 5012 characters,
+            495 strings with 5022 characters,
 and the built_in function-call counts, 1251 in all, are:
 = -- 105
 > -- 40

@@ -17,6 +17,7 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\E}{\mathbb{E}}
+\newcommand{\BigO}{\mathcal{O}}
 
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
@@ -83,7 +84,7 @@
 	year = {2016}
 }
 @article{kosto,
-	author = {kosto},
+	author = {konstantin},
 	title = {?},
 	note = "\url{?}",
 	year = {2018?}
@@ -91,7 +92,7 @@
 \end{filecontents*}
 
 \begin{document}
-\title{\textbf{TODO vymysliet}}
+\title{\textbf{TODO rename}}
 \author{Slavomír Hanzely}
 \maketitle
 
@@ -321,9 +322,9 @@ Simulation showed, that current estimation of $\omega$ is not the best estimatio
 
 In our setup, we were interested in $X$ to be set of solutions of linear system $Ax=b$ intersected with unit ball.
 
-We could also set $X$ to be set of solutions $x$ such as $Ax=I$, thus by solving convex feasibility problem we will finding inversion of matrix $A$.
+We could also set $X$ to be set of solutions $x$ such as $Ax=I$, by solving convex feasibility problem we will finding inversion of matrix $A$.
 
-We may also set $X$ to be set of solutions $x$ such as $x=B$, for fixed matrix $B$. This problem is trivial, but it can also be solved using sketching. \textbf{TODO convergence rate x=B}\\
+We may also set $X$ to be set of solutions $x$ such as $x=B$, for fixed matrix $B$. This problem is trivial, but it can also be solved using sketching. It converges to distance $d$ in $log(\frac{n}{d(n-1)})$\label{xIsB} iterations, where $n$ is dimension of $x$.\\
 
 \section{Alternative angles of views on convex feasibility problem}
 As mentioned in introduction, convex feasibility problem could be equivalently reformulated in many ways, so that the set of solutions reminds the same. Here are few different angles of view.
@@ -387,7 +388,7 @@ We would like to use algorithm that does not compute all gradients at each step 
 
 Our algorithm is called SAGA, it will move according to average gradient of functions, but it will not compute average gradient exactly. It will store list of (probably outdated) gradients of functions and their average. In each step, it updates $\tau$ gradients (randomly chosen), it updates average of all gradients and does step of gradient descent.\\
 
-The state of the algorithm is represented by current point $x_k$, current estimate of gradients of all functions $f_i$ and all addends of sum $h$ ($||x-\Pi_{X_i}(x)||^2$) (in Jacobian $J$) and average of gradients $$\nabla F_{avr}= \frac{1}{l+m}\left( \sum_{i=1}^l \nabla f_i + \lambda\sum_{i=1}^m \nabla ||x-\Pi_{X_i}(x)||^2 \right).$$ In each step current point $x$ is used for better estimation of Jacobian and then current estimation of jacobian is used for step in gradient descent.\\
+The state of the algorithm is represented by current point $x_k$, current estimate of gradients of all functions $f_i$ and all addends of sum $h$ (that have form $||x-\Pi_{X_i}(x)||^2$) (in Jacobian $J$) and average of gradients $$\nabla F_{avr}= \frac{1}{l+m}\left( \sum_{i=1}^l \nabla f_i + \lambda\sum_{i=1}^m \nabla ||x-\Pi_{X_i}(x)||^2 \right).$$ In each step current point $x$ is used for better estimation of Jacobian and then current estimation of jacobian is used for step in gradient descent.\\
 
 This algorithm requires functions $f_i$ and all addends of sum $h$ ($||x-\Pi_{X_i}(x)||^2$) to be $\mu$-strongly convex and Lipschitz smooth with constant $L$. Former means, that for $\mu>0$ for all x, y holds $$\langle \nabla f(x) - \nabla f(y), (x-y) \rangle \geq \mu ||x-y||_2^2. $$
 Later means, that exists constant $L$, that for all x, y holds $$||\nabla f(x) - \nabla f(y)||_2 \leq L ||x-y||_2.$$ Both constants $\mu$ and $L$ bound, how much function values $\nabla f(x)$ could change much when moving $x$.
@@ -426,9 +427,7 @@ The most import parameter in our simulation is minibatch parameter $\tau$. The b
 
 It is not clear, what combination of parameters $\tau$ and $\alpha$ leads to fastest convergence. As measure of speed of convergence, number of gradients computed before convergence was used. In theory, algorithm should be fastest when $\tau=1$, and with increasing $\tau$, it should get monotonically worse, the worst possible result is for $\tau = k+m$ (gradient descent case).
 
-Let's denote $L$ Lipschitz smooth constant for every $f_i$ and $\mu$ strongly convex constant for every $f_i$. Fastest convergence for strongly convex functions is achieved for $\alpha = \frac{1}{2(\mu n + L)}$. For non-strongly convex functions, the best convergence rate is achieved for $\alpha = \frac{1}{3L}$.\\
-
-However, these values are best for general functions, so it may be possible that they are not optimal in practice. In simulation we would like to find out, how good is best stepsize parameter in practice and how does it change with increase of minibatch size.
+Let's denote $L$ Lipschitz smooth constant for every $f_i$ and $\mu$ strongly convex constant for every $f_i$. Fastest convergence for strongly convex functions is achieved for $\alpha = \frac{1}{2(\mu n + L)}$. For non-strongly convex functions, the best convergence rate is achieved for $\alpha = \frac{1}{3L}$. These values are best for general functions, so it may be possible that they are not optimal in practice. In simulation we would like to find out, how good is best stepsize parameter in practice and how does it change with increase of minibatch size.
 
 
 \section{Implementation}
@@ -474,7 +473,7 @@ With increasing $\tau$ number of gradient computation necessary to converge decr
 
 Ratio between gradient computation with theoretical and experimental stepsizes increased with increase in $\lambda$. For $\lambda <1$, ratio was less than $20\%$, for $\lambda=100$, it was $\sim 60\%$, for $\lambda=1000$, it was even more than $95\%$. It may be caused by uniform function sampling.\\
 
-In this setup theoretical value of $\alpha$ for $\tau$ lead to slower convergence rate. But because experimental $\alpha$ required a lot of computation, in practice would be better to stick to the theoretical one.
+In this setup theoretical value of $\alpha$ for $\tau$ lead to slower convergence rate. However, computing experimentally better parameters required much more computation than converging with theoretical parameters, thus in practice, it would be faster to use theoretical parameters.
 
 \chapter{Conclusion}
 
@@ -484,8 +483,7 @@ Let's look once again on sketching algorithm. We had convex set $X$ as set of so
 
 Later, in SAGA algorithm, we have been updating columns of Jacobian in each iteration. This update could be viewed as projecting old Jacobian to column of new Jacobian. It change only one column at time. This is exactly convex feasibility problem, that what we were doing before.
 
-We could take updating of Jacobian as convex feasibility sketching achieved by projecting old Jacobian to supersets (columns) of new Jacobian, we would like to find $x \in X$, where $X=Jacobian_{real}$. However, the real Jacobian is changing in each iteration, thus we were doing sketching on set changing in each iteration. The closer we are to optimum, the real Jacobian is closer to $0$.
-
+We could take updating of Jacobian as convex feasibility sketching achieved by projecting old Jacobian to supersets (columns) of new Jacobian, we would like to find $x \in X$, where $X=Jacobian_{real}$. It is similar to problem of sketching problem $x=B$ \ref{xIsB}. However, in SAGA case, the real Jacobian is changing in each iteration, thus we were doing sketching on changing set in each iteration. The closer we are to optimum, the less real Jacobian is changing. With sufficiently small stepsize parameter, it converges to $0$.
 
 
 \section{Summary}
@@ -495,9 +493,9 @@ In simulation, it was shown, that theoretical best parameters are not best algor
 
 
 \section{Limitation}
-ill conditioned problems - big $\lambda$
+When optimization problem has big condition number (problem is ill-conditioned), than all gradient-based iterative methods converge slowly.
 
-\textbf{TODO vyhodit, ak prazdne}
+Condition number of $ \min_{x \in \R^n} \frac{1}{l}\sum_{i=1}^l f_i(x) + \lambda h(x)$ depends on $\lambda$, it increases linearly with increase in $\lambda$. When $\lambda$ is large, condition number of the problem is large, hence computation became lengthy and not usable.
 
 \section{Extensions}
 This work was meant to be for school course, due to the limited amount of time, there were multiple possibilities, how it could be extended.\\
@@ -508,9 +506,9 @@ In convex feasibility setup, by analysis of how fast simulation converges on bes
 
 SAGA algorithm could be compared to Random Kaczmarz method on linear systems. It would be special case of setup in this work, without functions.\\
 
-Gradient-based iterative optimization methods could be slightly adjusted to converge to distance $d$ in rate $\mathcal{O}(\frac{1}{\sqrt{d}})$ iterations. It is called Nesterov's accelerated gradient method \cite{acceleration}, its idea may be applied to SAGA algorithm, leading to faster theoretical convergence rate. Experimental testing might be done to test its performance.\\
+Gradient-based iterative optimization methods could be slightly adjusted to converge to distance $d$ in rate $\mathcal{O}(\frac{1}{\sqrt{d}})$ iterations. It is called Nesterov's accelerated gradient method \cite{acceleration}, its idea may be applied to SAGA algorithm, leading to fwaster theoretical convergence rate. Experimental testing might be done to test its performance.\\
 
-\textbf{TODO dokoncit, po zverejneni kosta}
+\textbf{TODO dokoncit, po zverejneni konstantina}
 
 In article \cite{kosto} about ???, they considered optimization problem $$ \min_{x \in \R^n} \frac{1}{l}\sum_{i=1}^l f_i(x) + \lambda h(x),$$ where $h(x)=\frac{1}{2m}\sum_{j=1}^m ||x-\Pi_{X_j}(x)||^2$ (as we do in \ref{solvedProblem}). They suggested to dynamically change parameter $\lambda$ in the simulation, starting with bigger value, decreasing it over time. Experimentally they found out, that it should lead to faster convergence. It may be tested, how should the parameter $\lambda$ be decreased for optimal converge.
 
