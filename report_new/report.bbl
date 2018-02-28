@@ -44,4 +44,17 @@ Francis~Bach Aaron~Defazio.
 \newblock 2014.
 \newblock \url{www.di.ens.fr/~fbach/Defazio_NIPS2014.pdf}.
 
+\bibitem{acceleration}
+David~Barber Aleksandar~Botev, Guy~Lever.
+\newblock Nesterov’s accelerated gradient and momentum as approximations to
+  regularised update descent.
+\newblock 2016.
+\newblock \url{www.arxiv.org/pdf/1607.01981.pdf}.
+
+\bibitem{kosto}
+kosto.
+\newblock ?
+\newblock 2018?
+\newblock \url{?}
+
 \end{thebibliography}

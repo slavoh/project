@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.1.29)  26 FEB 2018 15:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.1.29)  28 FEB 2018 15:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -655,22 +655,22 @@ LaTeX Warning: Tab has been converted to Blank Space.
 (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for IL2/cmr/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for IL2/cmr/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 93.
+LaTeX Font Info:    ... okay on input line 93.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -707,7 +707,7 @@ Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box32
-Package hyperref Info: Link coloring OFF on input line 81.
+Package hyperref Info: Link coloring OFF on input line 93.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -717,20 +717,20 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count129
 )
-LaTeX Info: Redefining \ref on input line 81.
-LaTeX Info: Redefining \pageref on input line 81.
-LaTeX Info: Redefining \nameref on input line 81.
+LaTeX Info: Redefining \ref on input line 93.
+LaTeX Info: Redefining \pageref on input line 93.
+LaTeX Info: Redefining \nameref on input line 93.
 
 (./report.out) (./report.out)
 \@outlinefile=\write3
 \openout3 = `report.out'.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 85.
+LaTeX Font Info:    Try loading font information for U+msa on input line 97.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 85.
+LaTeX Font Info:    Try loading font information for U+msb on input line 97.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -750,28 +750,16 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ]
 Chapter 1.
 
-Underfull \hbox (badness 10000) in paragraph at lines 101--102
+Underfull \hbox (badness 10000) in paragraph at lines 113--114
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 103--104
-
- []
-
-[7]
 Underfull \hbox (badness 10000) in paragraph at lines 115--116
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 117--118
-
- []
-
-[8]
-Chapter 2.
-
+[7]
 Underfull \hbox (badness 10000) in paragraph at lines 125--126
 
  []
@@ -781,22 +769,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 127--128
 
  []
 
+[8]
+Chapter 2.
+
+Underfull \hbox (badness 10000) in paragraph at lines 135--136
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 137--138
+
+ []
+
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 136.
+put line 146.
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--149
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 150--151
-
- []
-
-[9
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 152--153
+Underfull \hbox (badness 10000) in paragraph at lines 157--159
 
  []
 
@@ -805,20 +793,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 160--161
 
  []
 
+[9
 
-Underfull \hbox (badness 10000) in paragraph at lines 164--165
+]
+Underfull \hbox (badness 10000) in paragraph at lines 162--163
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 175.
+
+Underfull \hbox (badness 10000) in paragraph at lines 170--171
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 174--175
+
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 185.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 175.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 185.
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--181
+Underfull \hbox (badness 10000) in paragraph at lines 190--191
 
  []
 
@@ -826,103 +826,103 @@ Underfull \hbox (badness 10000) in paragraph at lines 180--181
 <f1b.png, id=185, 462.528pt x 346.896pt>
 File: f1b.png Graphic file (type png)
 <use f1b.png>
-Package pdftex.def Info: f1b.png  used on input line 196. on input line 196.
+Package pdftex.def Info: f1b.png  used on input line 206. on input line 206.
 Package pdftex.def Info: Requested size: 177.06216pt x 132.79579pt on input lin
-e 196.
+e 206.
 <b1b.png, id=187, 462.528pt x 346.896pt>
 File: b1b.png Graphic file (type png)
 <use b1b.png>
-Package pdftex.def Info: b1b.png  used on input line 202. on input line 202.
+Package pdftex.def Info: b1b.png  used on input line 212. on input line 212.
 Package pdftex.def Info: Requested size: 177.06216pt x 132.79579pt on input lin
-e 202.
+e 212.
 <f1n.png, id=188, 462.528pt x 346.896pt>
 File: f1n.png Graphic file (type png)
 <use f1n.png>
-Package pdftex.def Info: f1n.png  used on input line 212. on input line 212.
+Package pdftex.def Info: f1n.png  used on input line 222. on input line 222.
 Package pdftex.def Info: Requested size: 177.06216pt x 132.79579pt on input lin
-e 212.
+e 222.
 <b1n.png, id=189, 462.528pt x 346.896pt>
 File: b1n.png Graphic file (type png)
 <use b1n.png>
-Package pdftex.def Info: b1n.png  used on input line 218. on input line 218.
+Package pdftex.def Info: b1n.png  used on input line 228. on input line 228.
 Package pdftex.def Info: Requested size: 177.06216pt x 132.79579pt on input lin
-e 218.
+e 228.
 <f3b.png, id=190, 462.528pt x 346.896pt>
 File: f3b.png Graphic file (type png)
 <use f3b.png>
-Package pdftex.def Info: f3b.png  used on input line 228. on input line 228.
+Package pdftex.def Info: f3b.png  used on input line 238. on input line 238.
 Package pdftex.def Info: Requested size: 177.06216pt x 132.79579pt on input lin
-e 228.
+e 238.
 <b3b.png, id=191, 462.528pt x 346.896pt>
 File: b3b.png Graphic file (type png)
 <use b3b.png>
-Package pdftex.def Info: b3b.png  used on input line 234. on input line 234.
+Package pdftex.def Info: b3b.png  used on input line 244. on input line 244.
 Package pdftex.def Info: Requested size: 177.06216pt x 132.79579pt on input lin
-e 234.
+e 244.
 <f3n.png, id=192, 462.528pt x 346.896pt>
 File: f3n.png Graphic file (type png)
 <use f3n.png>
-Package pdftex.def Info: f3n.png  used on input line 246. on input line 246.
+Package pdftex.def Info: f3n.png  used on input line 256. on input line 256.
 Package pdftex.def Info: Requested size: 177.06216pt x 132.79579pt on input lin
-e 246.
+e 256.
 <b3n.png, id=193, 462.528pt x 346.896pt>
 File: b3n.png Graphic file (type png)
 <use b3n.png>
-Package pdftex.def Info: b3n.png  used on input line 252. on input line 252.
+Package pdftex.def Info: b3n.png  used on input line 262. on input line 262.
 Package pdftex.def Info: Requested size: 177.06216pt x 132.79579pt on input lin
-e 252.
+e 262.
 <f8b.png, id=194, 462.528pt x 346.896pt>
 File: f8b.png Graphic file (type png)
 <use f8b.png>
-Package pdftex.def Info: f8b.png  used on input line 262. on input line 262.
+Package pdftex.def Info: f8b.png  used on input line 272. on input line 272.
 Package pdftex.def Info: Requested size: 177.06216pt x 132.79579pt on input lin
-e 262.
+e 272.
 <b8b.png, id=195, 462.528pt x 346.896pt>
 File: b8b.png Graphic file (type png)
 <use b8b.png>
-Package pdftex.def Info: b8b.png  used on input line 268. on input line 268.
+Package pdftex.def Info: b8b.png  used on input line 278. on input line 278.
 Package pdftex.def Info: Requested size: 177.06216pt x 132.79579pt on input lin
-e 268.
+e 278.
 <f8n.png, id=196, 462.528pt x 346.896pt>
 File: f8n.png Graphic file (type png)
 <use f8n.png>
-Package pdftex.def Info: f8n.png  used on input line 278. on input line 278.
+Package pdftex.def Info: f8n.png  used on input line 288. on input line 288.
 Package pdftex.def Info: Requested size: 177.06216pt x 132.79579pt on input lin
-e 278.
+e 288.
 <b8n.png, id=197, 462.528pt x 346.896pt>
 File: b8n.png Graphic file (type png)
 <use b8n.png>
-Package pdftex.def Info: b8n.png  used on input line 284. on input line 284.
+Package pdftex.def Info: b8n.png  used on input line 294. on input line 294.
 Package pdftex.def Info: Requested size: 177.06216pt x 132.79579pt on input lin
-e 284.
+e 294.
  [12 <./f1b.png> <./b1b.png> <./f1n.png> <./b1n.png> <./f3b.png> <./b3b.png>] [
 13 <./f3n.png> <./b3n.png> <./f8b.png> <./b8b.png> <./f8n.png> <./b8n.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 296--297
+Underfull \hbox (badness 10000) in paragraph at lines 306--307
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 298--299
+Underfull \hbox (badness 10000) in paragraph at lines 308--309
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 300--301
+Underfull \hbox (badness 10000) in paragraph at lines 310--311
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 304--305
+Underfull \hbox (badness 10000) in paragraph at lines 314--315
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 316--317
+Underfull \hbox (badness 10000) in paragraph at lines 326--327
 
  []
 
 [14]
-Underfull \hbox (badness 10000) in paragraph at lines 321--322
+Underfull \hbox (badness 10000) in paragraph at lines 333--335
 
  []
 
@@ -931,128 +931,133 @@ Underfull \hbox (badness 10000) in paragraph at lines 321--322
 ]
 Chapter 3.
 
-Underfull \hbox (badness 10000) in paragraph at lines 332--333
+Underfull \hbox (badness 10000) in paragraph at lines 345--346
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 341--342
+Underfull \hbox (badness 10000) in paragraph at lines 354--355
 
  []
 
 [17]
-Underfull \hbox (badness 10000) in paragraph at lines 371--372
+Underfull \hbox (badness 10000) in paragraph at lines 384--385
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 373--374
+Underfull \hbox (badness 10000) in paragraph at lines 386--387
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 375--376
+Underfull \hbox (badness 10000) in paragraph at lines 388--389
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 377--378
+Underfull \hbox (badness 10000) in paragraph at lines 390--391
 
  []
 
 [18]
-Underfull \hbox (badness 10000) in paragraph at lines 397--398
+Underfull \hbox (badness 10000) in paragraph at lines 410--411
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 399--400
+Underfull \hbox (badness 10000) in paragraph at lines 412--413
 
  []
 
 <saga_convergence.png, id=252, 462.528pt x 346.896pt>
 File: saga_convergence.png Graphic file (type png)
 <use saga_convergence.png>
-Package pdftex.def Info: saga_convergence.png  used on input line 403. on input
- line 403.
+Package pdftex.def Info: saga_convergence.png  used on input line 416. on input
+ line 416.
 Package pdftex.def Info: Requested size: 309.85626pt x 232.40323pt on input lin
-e 403.
-
-Underfull \hbox (badness 10000) in paragraph at lines 410--411
-
- []
-
-[19 <./saga_convergence.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 416--417
-
- []
-
+e 416.
 
 Underfull \hbox (badness 10000) in paragraph at lines 423--424
 
  []
 
+[19 <./saga_convergence.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 429--430
 
-Underfull \hbox (badness 10000) in paragraph at lines 425--426
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 436--437
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 438--439
 
  []
 
 <fixed_stepsize.png, id=262, 462.528pt x 346.896pt>
 File: fixed_stepsize.png Graphic file (type png)
 <use fixed_stepsize.png>
-Package pdftex.def Info: fixed_stepsize.png  used on input line 435. on input l
-ine 435.
+Package pdftex.def Info: fixed_stepsize.png  used on input line 448. on input l
+ine 448.
 Package pdftex.def Info: Requested size: 309.85626pt x 232.40323pt on input lin
-e 435.
+e 448.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [20]
-Underfull \hbox (badness 10000) in paragraph at lines 440--441
+Underfull \hbox (badness 10000) in paragraph at lines 453--454
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 445--446
+Underfull \hbox (badness 10000) in paragraph at lines 458--459
 
  []
 
 <optimal_stepsize.png, id=268, 462.528pt x 346.896pt>
 File: optimal_stepsize.png Graphic file (type png)
 <use optimal_stepsize.png>
-Package pdftex.def Info: optimal_stepsize.png  used on input line 451. on input
- line 451.
+Package pdftex.def Info: optimal_stepsize.png  used on input line 464. on input
+ line 464.
 Package pdftex.def Info: Requested size: 309.85626pt x 232.40323pt on input lin
-e 451.
+e 464.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [21 <./fixed_stepsize.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 462--463
+Underfull \hbox (badness 10000) in paragraph at lines 475--476
 
  []
 
 [22 <./optimal_stepsize.png>]
 Chapter 4.
 
-Underfull \hbox (badness 10000) in paragraph at lines 479--480
+Underfull \hbox (badness 10000) in paragraph at lines 492--493
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 490--491
+Underfull \hbox (badness 10000) in paragraph at lines 503--504
 
  []
 
 [23
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 493--494
+Underfull \hbox (badness 10000) in paragraph at lines 506--507
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 496--497
+Underfull \hbox (badness 10000) in paragraph at lines 509--510
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 511--512
 
  []
 
@@ -1072,26 +1077,26 @@ ti . wordpress . com / 2015 / 08 / 21 /
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 507.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 522.
  [25
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 507.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 522.
  (./report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 507.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 507.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 522.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 522.
 Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: 31878FAB20DDD648B3FFDA29E9125C3F;1265.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 507.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 522.
  ) 
 Here is how much of TeX's memory you used:
- 8811 strings out of 494350
- 128118 string characters out of 6167761
- 211805 words of memory out of 5000000
- 12054 multiletter control sequences out of 15000+600000
+ 8816 strings out of 494350
+ 128181 string characters out of 6167761
+ 211912 words of memory out of 5000000
+ 12057 multiletter control sequences out of 15000+600000
  22570 words of font info for 69 fonts, out of 8000000 for 9000
  296 hyphenation exceptions out of 8191
- 36i,8n,41p,705b,504s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,8n,41p,569b,504s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texli
@@ -1109,10 +1114,10 @@ b></usr/share/texlive/texmf-dist/fonts/type1/public/cs/csr9.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/cs/cssl10.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/cs/cstt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/amsfonts/symbols/msbm10.pfb>
-Output written on report.pdf (25 pages, 622842 bytes).
+Output written on report.pdf (25 pages, 625029 bytes).
 PDF statistics:
- 384 PDF objects out of 1000 (max. 8388607)
- 301 compressed objects within 4 object streams
- 65 named destinations out of 1000 (max. 500000)
+ 393 PDF objects out of 1000 (max. 8388607)
+ 310 compressed objects within 4 object streams
+ 67 named destinations out of 1000 (max. 500000)
  236 words of extra memory for PDF output out of 10000 (max. 10000000)
 

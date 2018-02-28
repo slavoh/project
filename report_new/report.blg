@@ -14,36 +14,38 @@ Name 1 in "Simon Lacoste-Julien, Mark Schmidt, and Francis Bach" has a comma at 
 while executing---line 944 of file unsrt.bst
 Warning--empty journal in SGD
 Warning--empty journal in SAGA
-You've used 7 entries,
+Warning--empty journal in acceleration
+Warning--empty journal in kosto
+You've used 9 entries,
             1791 wiz_defined-function locations,
-            486 strings with 4809 characters,
-and the built_in function-call counts, 977 in all, are:
-= -- 81
-> -- 32
+            494 strings with 5012 characters,
+and the built_in function-call counts, 1251 in all, are:
+= -- 105
+> -- 40
 < -- 0
-+ -- 15
-- -- 8
-* -- 21
-:= -- 175
-add.period$ -- 26
-call.type$ -- 7
-change.case$ -- 7
++ -- 19
+- -- 10
+* -- 27
+:= -- 225
+add.period$ -- 34
+call.type$ -- 9
+change.case$ -- 9
 chr.to.int$ -- 0
-cite$ -- 12
-duplicate$ -- 50
-empty$ -- 107
-format.name$ -- 8
-if$ -- 210
+cite$ -- 16
+duplicate$ -- 66
+empty$ -- 135
+format.name$ -- 10
+if$ -- 268
 int.to.chr$ -- 0
-int.to.str$ -- 7
-missing$ -- 5
-newline$ -- 43
-num.names$ -- 7
-pop$ -- 34
+int.to.str$ -- 9
+missing$ -- 7
+newline$ -- 55
+num.names$ -- 9
+pop$ -- 42
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 22
+skip$ -- 28
 stack$ -- 0
 substring$ -- 0
 swap$ -- 2
@@ -51,8 +53,8 @@ text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 5
-while$ -- 7
-width$ -- 8
-write$ -- 77
+warning$ -- 7
+while$ -- 9
+width$ -- 10
+write$ -- 99
 (There was 1 error message)

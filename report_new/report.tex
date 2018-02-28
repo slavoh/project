@@ -76,6 +76,18 @@
 	note = "\url{www.arxiv.org/pdf/math/0702226.pdf}",
 	year = {2007}
 }
+@article{acceleration,
+	author = {Aleksandar Botev, Guy Lever, David Barber},
+	title = {Nesterov’s Accelerated Gradient and Momentum as approximations to Regularised Update Descent},
+	note = "\url{www.arxiv.org/pdf/1607.01981.pdf}",
+	year = {2016}
+}
+@article{kosto,
+	author = {kosto},
+	title = {?},
+	note = "\url{?}",
+	year = {2018?}
+}
 \end{filecontents*}
 
 \begin{document}
@@ -94,9 +106,9 @@ This project is about constraint optimization. It is focused on sketching algori
 
 In this work, we are working with complicated convex set $X$ defined as intersection of large number of simple constraints. Starting with convex feasibility problem, our goal is to quickly find point close to the convex set. Exact computation may be done, but if $X$ is complicated, it may be lengthy or infeasible. Thus direct computation is to be avoided.
 
-The type of indirect algorithms, that could be used for this kind of problem, are iterative ones. Starting with initial guess, which point could be in the set, they are in steps improving their guess, until they are sufficiently close. They use to find point near optimum much faster than exact computation.
+The type of indirect algorithms, that could be used for this kind of problem, are iterative ones. Starting with initial guess, which point could be in the set, they are iteratively improving their guess, until they are sufficiently close. They use to find point near optimum much faster than exact computation.
 
-In our case, we are having a large number of simple constraints. Working with all of them in each step could be slow. Hence, we are interested in algorithms, that work with only part of all constraints in each step - so called stochastic algorithms. Stochastic algorithms use to involve randomness and as measure of convergence speed, expected distance from optimum is used.
+In our case, we are having a large number of simple constraints. Working with all of them in each step is slow. Hence, we are interested in algorithms, that work with only part of all constraints in each step - so called stochastic algorithms. Stochastic algorithms use to involve randomness and as measure of convergence speed, expected distance from optimum is used.
 
 In this work, convex feasibility problem is solved by sketching algorithm, which in each step project current point on randomly chosen individual constraint.\\
 
@@ -104,11 +116,9 @@ Convex feasibility problem could be equivalently reformulated in many ways, so t
 
 In both of the original and reformulated problem, we were looking for arbitrary point sufficiently close to set $X$. If points in $X$ are not equally good for us, we need to do something different. We may assign values to points (using some function) and then minimize that function. Let's suppose, that we want to find point in $X$, that also minimizes function, defined as sum of simple functions.
 
-%Other option how to reformulate this problem is to reformulate it as minimization problem of constant function over $X$. It could also be solved using  gradient descent.
+Our new problem turned out to be stochastic minimization problem over set $X$. We could once more reformulated it as stochastic optimization problem without constraints (its goal is to minimize sum of large number of functions) and try to use iterative algorithms on it. As mentioned, large number of functions make non-stochastic gradient descent infeasible.
 
-%If we change constant function to other non-constant convex function, it could also be solved using gradient descent. However, if we started with large set of constraints, we will after reformulation be minimizing sum of large number of function. Thus, we want to modify gradient descent to avoid looking at each function in each step.\\
-
-Our new problem turned out to be stochastic minimization problem over set $X$. We could once more reformulated it as stochastic optimization problem without constraints (we are minimizing sum of large number of functions) and try to use iterative algorithms on it. Non-stochastic gradient descent is still infeasible, one of the options is to use classical stochastic gradient descent. It is necessary to remind, that stochastic gradient descent is moving according to subgradients, which are nonzero even in optimum. Thus stochastic gradient descent does not stop at optimum unless the size of steps is being reduced to zero. However, reducing size of steps leads to slower convergence rate.
+One of the possible approaches is to use classical stochastic gradient descent. It is necessary to remind, that stochastic gradient descent is moving according to subgradients, which are nonzero even in optimum. Thus stochastic gradient descent does not stop at optimum unless the size of steps is being reduced to zero. However, reducing size of steps leads to slower convergence rate.
 
 Second option, how to make stochastic modification of gradient descent that will stop at optimum without reducing size of the steps, is to move according to gradient of sum (or average) of all functions in each step and make this gradient to go to $0$. If algorithm find point, that the function has average gradient $0$  in it, than that point is minimum (local or global).
 
@@ -116,7 +126,7 @@ For this kind of approach, it is possible to use SAGA algorithm. It has saved al
 
 In each iteration of SAGA, one column of Jacobian is updated and rest of Jacobian stays the same. We could take updating of Jacobian as using sketching algorithm again and projecting old Jacobian to superset of new Jacobian (changing only one column). Thus we got by circle to algorithm, which we had been beginning with.\\
 
-The goal of this work is to intuitively present motivation behind both sketching and SAGA algorithms, test them in practice and find out, whether there is possibility to improve theoretical best parameters. For both sketching and SAGA algorithms, there are also included experimental testing of thier performance and also comparison, how fast does they converge with different parameters. Project was implemented in the language Julia, that is very fast and simple to use, especially for matrix operations.
+The goal of this work is to intuitively present motivation behind both sketching and SAGA algorithms, test them in practice and find out, whether there is possibility to improve theoretical best parameters. For both sketching and SAGA algorithms, there are also included experimental testing of their performance and also comparison, how fast does they converge with different parameters. Project was implemented in the language Julia, that is very fast and simple to use, especially for matrix operations.
 
 \chapter{Convex feasibility}
 
@@ -172,9 +182,9 @@ As baseline, theoretical convergence was plotted (it is also exponential functio
 There were multiple simulation setups, they differed in following parameters:
 
 \begin{list}{•}{}
-\item $\tau$, that is chosen from set $\{ 1, 3, 8 \}$.
-\item Whether unit ball is between $X_i$ or it is excluded.
-\item $\omega$, whether it is constant\footnote{As constant, it was chosen 1} for whole simulation or it chosen each step for optimal value.
+	\item $\tau$, that is chosen from set $\{ 1, 3, 8 \}$.
+	\item Whether unit ball is between $X_i$ or it is excluded.
+	\item $\omega$, whether it is constant\footnote{As constant, it was chosen 1} for whole simulation or it chosen each step for optimal value.
 \end{list}
 
 For each combination of parameters above, multiple simulation were run (and graphs saved). Below, there are some of the graphs, for each combination of parameters one.\\
@@ -182,111 +192,111 @@ For each combination of parameters above, multiple simulation were run (and grap
 \newpage
 \textbf{Description of graphs}:
 \begin{itemize}[noitemsep]
-\item X axis shows iteration
-\item Y axis shows distance (logarithmic scale)
-\item Theoretical convergence is orange line.
-\item Distance from projection is blue line.
-\item Best omega, that could be chosen (for every concrete $x_k$) is drawn as grey dot (for $x_k$).
+	\item X axis shows iteration
+	\item Y axis shows distance (logarithmic scale)
+	\item Theoretical convergence is orange line.
+	\item Distance from projection is blue line.
+	\item Best omega, that could be chosen (for every concrete $x_k$) is drawn as grey dot (for $x_k$).
 \end{itemize}
 
 \begin{figure}[H]
-\centering
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{f1b.png}
-  \caption{fixed $\omega$}
-  \label{fig:sub1}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{b1b.png}
-  \caption{best omega}
-  \label{fig:sub2}
-\end{subfigure}
-\caption{$\tau=1$, with ball}
-\label{fig:test1}
-
-\centering
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{f1n.png}
-  \caption{fixed $\omega$}
-  \label{fig:sub3}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{b1n.png}
-  \caption{best omega}
-  \label{fig:sub4}
-\end{subfigure}
-\caption{$\tau=1$, without ball}
-\label{fig:test2}
-
-\centering
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{f3b.png}
-  \caption{fixed $\omega$}
-  \label{fig:sub5}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{b3b.png}
-  \caption{best omega}
-  \label{fig:sub6}
-\end{subfigure}
-\caption{$\tau=3$, with ball}
-\label{fig:test3}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{f1b.png}
+		\caption{fixed $\omega$}
+		\label{fig:sub1}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{b1b.png}
+		\caption{best omega}
+		\label{fig:sub2}
+	\end{subfigure}
+	\caption{$\tau=1$, with ball}
+	\label{fig:test1}
+	
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{f1n.png}
+		\caption{fixed $\omega$}
+		\label{fig:sub3}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{b1n.png}
+		\caption{best omega}
+		\label{fig:sub4}
+	\end{subfigure}
+	\caption{$\tau=1$, without ball}
+	\label{fig:test2}
+	
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{f3b.png}
+		\caption{fixed $\omega$}
+		\label{fig:sub5}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{b3b.png}
+		\caption{best omega}
+		\label{fig:sub6}
+	\end{subfigure}
+	\caption{$\tau=3$, with ball}
+	\label{fig:test3}
 \end{figure}
 
 \begin{figure}[H]
-\centering
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{f3n.png}
-  \caption{fixed $\omega$}
-  \label{fig:sub7}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{b3n.png}
-  \caption{best omega}
-  \label{fig:sub8}
-\end{subfigure}
-\caption{$\tau=3$, without ball}
-\label{fig:test4}
-
-\centering
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{f8b.png}
-  \caption{fixed $\omega$}
-  \label{fig:sub9}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{b8b.png}
-  \caption{best omega}
-  \label{fig:sub10}
-\end{subfigure}
-\caption{$\tau=8$, with ball}
-\label{fig:test5}
-
-\centering
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{f8n.png}
-  \caption{fixed $\omega$}
-  \label{fig:sub11}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{b8n.png}
-  \caption{best omega}
-  \label{fig:sub12}
-\end{subfigure}
-\caption{$\tau=8$, without ball}
-\label{fig:test6}
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{f3n.png}
+		\caption{fixed $\omega$}
+		\label{fig:sub7}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{b3n.png}
+		\caption{best omega}
+		\label{fig:sub8}
+	\end{subfigure}
+	\caption{$\tau=3$, without ball}
+	\label{fig:test4}
+	
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{f8b.png}
+		\caption{fixed $\omega$}
+		\label{fig:sub9}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{b8b.png}
+		\caption{best omega}
+		\label{fig:sub10}
+	\end{subfigure}
+	\caption{$\tau=8$, with ball}
+	\label{fig:test5}
+	
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{f8n.png}
+		\caption{fixed $\omega$}
+		\label{fig:sub11}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.8\linewidth]{b8n.png}
+		\caption{best omega}
+		\label{fig:sub12}
+	\end{subfigure}
+	\caption{$\tau=8$, without ball}
+	\label{fig:test6}
 \end{figure}
 
 \newpage
@@ -316,12 +326,15 @@ We could also set $X$ to be set of solutions $x$ such as $Ax=I$, thus by solving
 We may also set $X$ to be set of solutions $x$ such as $x=B$, for fixed matrix $B$. This problem is trivial, but it can also be solved using sketching. \textbf{TODO convergence rate x=B}\\
 
 \section{Alternative angles of views on convex feasibility problem}
+As mentioned in introduction, convex feasibility problem could be equivalently reformulated in many ways, so that the set of solutions reminds the same. Here are few different angles of view.
+
 Convex feasibility problem can be viewed as minimization problem over set $X$, find $$\argmin_{x \in X} 0.$$
 
-It may also be reformulated as stochastic optimization problem \cite{sketchAndProject}: $$\text{minimize } f(x)=\E_{S \sim D}[f_S(x)],$$ where $$f_S(x) = \frac{1}{2}||x-\Pi_{x_S}(x)||^2.$$\\
+It may also be reformulated as stochastic optimization problem \cite{sketchAndProject}: $$\text{minimize } f(x)=\E_{S \sim D}[f_S(x)],$$ where $$f_S(x) = \frac{1}{2}||x-\Pi_{x_S}(x)||^2.$$
+Stochastic gradient descent on latter problem does the same as sketching algorithm on original problem.\\
 
+We have got algorithm, that can find some point in convex set. However, it can find arbitrary point near to set $X$. If points in $X$ are not equally good for us, we need to do something different. We may assign values to points (using some function) and then minimize that function. Let's suppose, that we want to find point in $X$, that also minimizes sum of large number of simple functions over $X$, we would like to find $$\argmin_{x \in X} F(x),$$ where $F(x)=\sum_{i=1}^{l}f_i(x).$
 
-We have got algorithm, that can find some point in convex set. However, it can find arbitrary point near to set $X$. If points in $X$ are not equally good for us, this algorithm would not help us a lot. Let's suppose, that we want to find point in $X$, that also minimizes some functions over $X$, we would like to find $$\argmin_{x \in X} f(x).$$
 
 
 \chapter{Optimization with many constraints}
@@ -331,7 +344,7 @@ Problem is defined as following: Given a large set of functions $f_1,f_2,\cdots,
 
 Lets denote $F(x)=\frac{1}{l}\sum_{i=1}^l f_i(x)$, the problem is to minimize $F(x)$ also satisfying given constraints.\\
 
-Instead solving that problem, we will solve following problem:
+Instead solving that problem, we will solve following problem: \label{solvedProblem}
 $$ \min_{x \in \R^n} \frac{1}{l}\sum_{i=1}^l f_i(x) + \lambda h(x),$$
 where $h(x)=\frac{1}{2m}\sum_{j=1}^m ||x-\Pi_{X_j}(x)||^2$.
 
@@ -495,13 +508,15 @@ In convex feasibility setup, by analysis of how fast simulation converges on bes
 
 SAGA algorithm could be compared to Random Kaczmarz method on linear systems. It would be special case of setup in this work, without functions.\\
 
-acceleration
+Gradient-based iterative optimization methods could be slightly adjusted to converge to distance $d$ in rate $\mathcal{O}(\frac{1}{\sqrt{d}})$ iterations. It is called Nesterov's accelerated gradient method \cite{acceleration}, its idea may be applied to SAGA algorithm, leading to faster theoretical convergence rate. Experimental testing might be done to test its performance.\\
+
+\textbf{TODO dokoncit, po zverejneni kosta}
+
+In article \cite{kosto} about ???, they considered optimization problem $$ \min_{x \in \R^n} \frac{1}{l}\sum_{i=1}^l f_i(x) + \lambda h(x),$$ where $h(x)=\frac{1}{2m}\sum_{j=1}^m ||x-\Pi_{X_j}(x)||^2$ (as we do in \ref{solvedProblem}). They suggested to dynamically change parameter $\lambda$ in the simulation, starting with bigger value, decreasing it over time. Experimentally they found out, that it should lead to faster convergence. It may be tested, how should the parameter $\lambda$ be decreased for optimal converge.
 
 
 
 \bibliographystyle{unsrt}
 \bibliography{trial}
-
-\textbf{TODO: citovat Konstantina (po tom, co bude zverejneny)}
 
 \end{document}
