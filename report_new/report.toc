@@ -5,13 +5,13 @@
 \contentsline {section}{\numberline {2.2}Implementation}{10}{section.2.2}
 \contentsline {section}{\numberline {2.3}Simulation setup}{10}{section.2.3}
 \contentsline {section}{\numberline {2.4}Simulation result}{14}{section.2.4}
-\contentsline {section}{\numberline {2.5}Changing set of solution in convex feasibility problem}{14}{section.2.5}
+\contentsline {section}{\numberline {2.5}Different application of convex feasibility problem}{14}{section.2.5}
 \contentsline {section}{\numberline {2.6}Alternative angles of views on convex feasibility problem}{14}{section.2.6}
 \contentsline {chapter}{\numberline {3}Optimization with many constraints}{17}{chapter.3}
 \contentsline {section}{\numberline {3.1}Problem definition}{17}{section.3.1}
-\contentsline {section}{\numberline {3.2}Parameters in theory}{19}{section.3.2}
-\contentsline {section}{\numberline {3.3}Implementation}{20}{section.3.3}
-\contentsline {section}{\numberline {3.4}Simulation setup}{20}{section.3.4}
+\contentsline {section}{\numberline {3.2}Parameters in theory}{20}{section.3.2}
+\contentsline {section}{\numberline {3.3}Implementation}{21}{section.3.3}
+\contentsline {section}{\numberline {3.4}Simulation setup}{21}{section.3.4}
 \contentsline {section}{\numberline {3.5}Simulation result}{22}{section.3.5}
 \contentsline {chapter}{\numberline {4}Conclusion}{23}{chapter.4}
 \contentsline {section}{\numberline {4.1}Jacobian sketching}{23}{section.4.1}
