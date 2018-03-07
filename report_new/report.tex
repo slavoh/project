@@ -105,23 +105,25 @@ This project is about constraint optimization. It is focused on sketching algori
 
 \chapter{Introduction}
 
-In this project, we are working with complicated convex set $X$ defined as intersection of large number of simple convex sets. Starting with convex feasibility problem, our goal is to quickly find point close to the convex set $X$. Due to the fact that $X$ is complicated, the direct computation to the point $X$ might be infeasible, or at least extremely costly. However, one might take advantage of the fact, that $X$ is defined as the intersection of large number of simple sets.
+In this project, we are working with complicated convex set $X$ defined as intersection of large number of simple convex sets. Starting with convex feasibility problem, our goal is to quickly find point of the convex set $X$. Due to the fact that $X$ is complicated, the direct computation to the point $X$ might be infeasible, or at least extremely costly. However, one might take advantage of the fact, that $X$ is defined as the intersection of large number of simple sets.
 
-The type of indirect algorithms, that could be used for this kind of problem, are iterative ones. Starting with initial guess, which point could be in the set, they are iteratively improving their guess, until they are sufficiently close. They use to find point near optimum much faster than exact computation.
+The type of indirect algorithms, that could be used for this kind of problem, are iterative ones. Starting with initial guess, iterative algorithms are iteratively improving their guess, until they are sufficiently close. Often, they use to find point near optimum much faster than exact computation.
 
-In our case, we are having a large number of simple constraints. Working with all of them in each step is slow. In particular, we focus only on a subset of the constraints each iteration. In this work, convex feasibility problem is solved by sketching algorithm, which in each step project current point on randomly chosen individual constraint.\\
+In our case, we are having a large number of simple constraints. Working with all of them in each step is slow. In particular we focus only on a subset of the constraints each iteration. In this work, convex feasibility problem is solved by sketching algorithm, which in each step project current point on randomly chosen individual constraint.\\
 
-Convex feasibility problem could be equivalently reformulated in many ways, so that the set of solutions reminds the same. One of the options is to reformulate it as stochastic optimization problem. Natural choice of algorithm for this newly constructed problem is well-known gradient descent. It turns out that stochastic gradient descent on this reformulated problem is equivalent to sketching algorithm on original problem.\\
+Convex feasibility problem could be equivalently reformulated in many ways, so that the set of solutions remains the same, which brings different insights to the problem. One of the options is to reformulate it as stochastic optimization problem. Natural choice of algorithm for this newly constructed problem is well-known gradient descent. It turns out that stochastic gradient descent on the reformulated problem is equivalent to sketching algorithm on original problem.\\
 
-In both of the original and reformulated problem, we were looking for arbitrary point sufficiently close to set $X$. If points in $X$ are not equally good for us, we need to do something different. We may have access to the "quality" of each point in $X$, and wish to choose the best point in $X$ accordingly. This is however equivalent to minimizing some function over set $X$. Let's suppose, that we want to find point in $X$, that also minimizes function, defined as sum of simple convex functions.
+In both the original and reformulated problem, we were looking for arbitrary point sufficiently close to set $X$. However, if points in $X$ are not equally good for us, we need to do something different. We may have access to the "quality" of each point in $X$, and wish to choose the best point in $X$ accordingly. This is however equivalent to minimizing some function over set $X$. Let's suppose, that we want to find point in $X$, that also minimizes function, defined as sum of simple convex functions.
 
-Our new problem turned out to be stochastic minimization problem over set $X$. We could once more reformulated it as stochastic optimization problem without constraints (its goal is to minimize sum of large number of functions) and try to use iterative algorithms on it. Deterministic gradient descent infeasible due to large number of functions.
+Our new problem turned out to be stochastic minimization problem over set $X$. We could once more reformulate as a stochastic optimization problem without constraints (its goal is to minimize sum of large number of functions) and try to use different algorithms on it. Deterministic gradient descent infeasible due to large number of functions.
 
 One of the possible approaches is to use classical stochastic gradient descent. It is necessary to remind, that stochastic gradient descent is moving according to subgradients, which are nonzero even in optimum. Thus stochastic gradient descent does not stop at optimum unless the size of steps is being reduced to zero. However, reducing size of steps leads to slower convergence rate.
 
-Second option, how to make stochastic modification of gradient descent that will stop at optimum without reducing size of the steps, is to move according to gradient of sum (or average) of all functions in each step and make this gradient to go to $0$. If algorithm find point, that the function has average gradient $0$  in it, than that point is minimum. SAGA algorithm guarantees the convergence to the global optimum even without reducing stepsize, and enjoys fast, linear convergence rate.
+Second option, how to make stochastic modification of gradient descent that will stop at optimum without reducing size of the steps, is to move according to estimate of gradient of average of all functions and make this gradient to go to $0$. If algorithm find point, that the function has average gradient $0$  in it, than that point is minimum. 
 
-For this kind of approach, it is possible to use SAGA algorithm. It has saved all (probably outdated) gradients in Jacobian and their average. In each step, it updates one gradient, their average and then does gradient descent step (using average of all gradients). SAGA algorithm is stochastic, in each step it only compute gradient of one function. It could be shown, that this algorithm converges as fast as gradient descent (thus faster than stochastic gradient descent).\\
+For this kind of approach, it is possible to use SAGA algorithm. It has saved all (probably outdated) gradients in Jacobian and their average. In each step, it updates one gradient, their average and then does gradient descent step (using average of all gradients). 
+
+SAGA algorithm guarantees the convergence to the global optimum even without reducing stepsize, and enjoys fast, linear convergence rate. It has low iteration cost, because it computes gradient of only one function in each step. In terms of number of iteration until convergence, SAGA converges almost as fast as gradient descent (thus faster than stochastic gradient descent).\\
 
 The update of gradient estimator in SAGA can be viewed as Jacobian sketching. In particular, in each iteration of SAGA, one column of Jacobian is updated and rest of Jacobian stays the same. We could take updating of Jacobian as using sketching algorithm again and projecting old Jacobian to superset of new Jacobian (changing only one column). However, this can be seen as a special instance of the algorithm to find a point in set $X$ defined as an intersection of affine subspaces. Thus we got by circle to algorithm, which we had been beginning with.\\
 
@@ -158,7 +160,7 @@ where $S_k$ is a random subset of $\{ 1, \dots , n\}$ for every $k$, $|S_k|=\tau
 
 Parameter $\omega$ specifies the size of the step, parameter $\tau$ determines a number of the sets to project on every iteration.\\
 
-As mentioned above, it can be shown that the algorithm converges relatively quickly even though $X$ is a complicated set often given by a very large amount of data. To get to distance $d$ from optimum, it is needed $\mathcal{O} (log(\frac{1}{d}))$ iterations\cite{sketchAndProject,kaczmarz}.  However, the optimal parameter selection for the algorithm is unclear. Since this area is not sufficiently examined, the theory is built only for the case where the length of step $\omega$ is constant.\\
+As mentioned above, it can be shown that the algorithm converges relatively quickly even though $X$ is a complicated set often given by a very large amount of data. To get to distance $d$ from optimum, it is needed $\mathcal{O} (\log(\frac{1}{d}))$ iterations\cite{sketchAndProject,kaczmarz}.  However, the optimal parameter selection for the algorithm is unclear. Since this area is not sufficiently examined, the theory is built only for the case where the length of step $\omega$ is constant.\\
 
 \section{Implementation}
 
@@ -306,11 +308,11 @@ Algorithm was successfully implemented and simulated, plenty of graphs were draw
 
 In every setup, distances of points $x_k$ in graph made line (from some point), thus distances were always decreasing exponentially.\\
 
-For $\tau=1$, we were projecting only on 1 line (or ball) each iteration. This setup computed iterations fastest, but the rate of converging was slowest. There was no visible difference between setting $\omega$ as constant 1 or choosing best omega each in every iteration. It was caused by fact, that for $\tau=1$ were values of best omegas around $1$ (that was also fixed value of $\omega$).\\
+For $\tau=1$, we were projecting only on 1 line (or ball) each iteration. The iteration cost in this setup was lowest, however the convergence rate was slowest. There was no visible difference between setting $\omega$ as constant 1 or choosing best omega each in every iteration. It was caused by fact, that for $\tau=1$ were values of best omegas around $1$ (that was also fixed value of $\omega$).\\
 
 With increasing $\tau$ (for fixed $\omega$), simulation was converging a bit faster with each iteration (lines of graphs were steeper), but computation of one iteration was slower (because it is necessary to compute $\tau$ projections each iteration).
 
-Changing fixed $\omega$ for best omega lead to huge convergence speedup. Distances of $x_k$ curve was much steeper than theoretical convergence. However, in the simulation, best omegas were computed from the real projection point, thus it is not possible to use them for convergence speedup in practice.\\
+Changing fixed $\omega$ to the best omega lead to huge convergence speedup. The convergence rate observed in practice was much faster then theoretical bound. However, in the simulation, best omegas were computed from the real projection point, thus it is not possible to use them for convergence speedup in practice.\\
 
 Setups with projecting on a ball in beginning of the simulation jumped into smaller distance, but after that, the converge rate was same (even a bit slower) as setup without projection on ball (with same $\tau$ and $\omega$). It is caused by the fact, that projecting on ball from outside of the ball lead to big distance reduction. Once point is inside in the ball, projecting on the ball makes no difference.
 
@@ -322,7 +324,7 @@ In our setup, we were interested in $X$ to be set of solutions of linear system 
 
 We could also set $X$ to be set of solutions $x$ such as $Ax=I$, by solving convex feasibility problem we will finding inversion of matrix $A$.
 
-We may also set $X$ to be set of solutions $x$ such as $x=B$, for fixed matrix $B$. This problem is trivial, but it can also be solved using sketching, which can be viewed as a step of the Jacobian sketching for SAGA as mentioned in the introduction. It converges to distance $d$ in $log(\frac{n}{d(n-1)})$\label{xIsB} iterations, where $n$ is dimension of $x$.\\
+We may also set $X$ to be set of solutions $x$ such as $x=B$, for fixed matrix $B$. This problem is trivial, but it can also be solved using sketching, which can be viewed as a step of the Jacobian sketching for SAGA as mentioned in the introduction. It converges to distance $d$ in $\log(\frac{n}{d(n-1)})$\label{xIsB} iterations, where $n$ is dimension of $x$.\\
 
 \section{Alternative angles of views on convex feasibility problem}
 As mentioned in introduction, convex feasibility problem could be equivalently reformulated in many ways, so that the set of solutions reminds the same. Here are few different angles of view.
@@ -362,7 +364,7 @@ It could be shown, that solution of new problem is approximate solution of previ
 	\end{algorithmic}
 \end{algorithm}
 
-Gradient descent is much faster than exact computation, on strongly convex functions it converges to distance $d$ with $\mathcal{O}(log(\frac{1}{d}))$ iterations \cite{GD} . This convergence rate is referred as linear. However, it is not appropriate for this problem. In our case, both the number of functions $f_i$ and number of constraints $X_i$ are large, so it may not be able to process all data at once.
+Gradient descent is much faster than exact computation, on strongly convex functions it converges to distance $d$ with $\mathcal{O}(\log(\frac{1}{d}))$ iterations \cite{GD} . This convergence rate is referred as linear. However, it is not appropriate for this problem. In our case, both the number of functions $f_i$ and number of constraints $X_i$ are large, so it may not be able to process all data at once.
 
 Hence it is necessary to use stochastic version. Let's denote $\tau$ minibatch size (number of functions processed in one step), let's define $\nabla F_k(x_k)$ as following: $$\nabla F_k(x_k) = \frac{1}{\tau}\left(\sum_{i=1}^{\tau_1} \nabla f_{s_i}(x_k) + \lambda \sum_{i=1}^{\tau_2} \nabla h_i(x_k) \right)$$ where $\{r_1, r_2, \cdots, r_{\tau_1}, s_1, s_2, \cdots, s_{\tau_2} \}$ are uniformly randomly picked indexes of functions $f_i$ and $h_i$ ($r_i$ are indexes of functions $f_i$, $s_i$ are indexes of functions $h_i$), $\tau_1+\tau_2=\tau$, $\{r_1, r_2, \cdots, r_{\tau_1} \} \subseteq \{1,2,\cdots, l \}$, $\{s_1, s_2, \cdots, s_{\tau_2} \} \subseteq \{1,2,\cdots, m \}$. Therefore $\nabla F_k(x_k)$ is average gradient of randomly chosen $\tau$ functions at point $x_k$. Stochastic gradient descent is following:
 
@@ -384,10 +386,10 @@ We would like to use algorithm that does not compute all gradients at each step 
 
 Our algorithm is called SAGA, it will move according to average gradient of functions, but it will not compute average gradient exactly. It will store list of (probably outdated) gradients of functions and their average. In each step, it updates $\tau$ gradients (randomly chosen), it updates average of all gradients and does step of gradient descent.\\
 
-The state of the algorithm is represented by current point $x_k$, current estimate of gradients of all functions $f_i$ and all functions $h_i$ (in Jacobian $J$) and average of gradients $$\nabla F_{avr}= \frac{1}{l+m}\left( \sum_{i=1}^l \nabla f_i + \lambda\sum_{i=1}^m \nabla h_i \right).$$ In each step current point $x$ is used for better estimation of Jacobian and then current estimation of jacobian is used for step in gradient descent.\\
+Algorithm is in each step updating current point $x_k$, current estimate of gradients of all functions $f_i$ and all functions $h_i$ (in Jacobian $J$) and average of gradients $$\nabla F_{avr}= \frac{1}{l+m}\left( \sum_{i=1}^l \nabla f_i + \lambda\sum_{i=1}^m \nabla h_i \right).$$ In each step current point $x$ is used for better estimation of Jacobian and then current estimation of jacobian is used for step in gradient descent.\\
 
 This algorithm requires all functions $f_i$ and $h_i$ to be $\mu$-strongly convex and Lipschitz smooth with constant $L$. Former means, that for $\mu>0$ for all x, y holds $$\langle \nabla f(x) - \nabla f(y), (x-y) \rangle \geq \mu ||x-y||_2^2. $$
-Later means, that exists constant $L$, that for all x, y holds $$||\nabla f(x) - \nabla f(y)||_2 \leq L ||x-y||_2.$$ Both constants $\mu$ and $L$ bound, how much function values $\nabla f(x)$ could change much when moving $x$.
+Later means, that exists constant $L$, that for all x, y holds $$||\nabla f(x) - \nabla f(y)||_2 \leq L ||x-y||_2.$$ Both constants $\mu$ and $L$ bound, how much function values $\nabla f(x)$ could changing its argument.
 
 \begin{algorithm}[H]
 	\caption{SAGA \cite{SAGA}}
@@ -424,7 +426,7 @@ Later means, that exists constant $L$, that for all x, y holds $$||\nabla f(x) -
 
 \textbf{Remark:} SAGA algorithm with $\tau=l+m$ is gradient descent algorithm.\\
 
-Convergence rate of SAGA is referred as linear, it converges to distance $d$ with $\mathcal{O}(log(\frac{1}{d}))$ iterations \cite{SAGA}, it should as fast as gradient descent.\\
+Convergence rate of SAGA is referred as linear, it converges to distance $d$ with $\mathcal{O}(\log(\frac{1}{d}))$ iterations \cite{SAGA}, it should as fast as gradient descent.\\
 
 \begin{figure}[H]
 	\centering
@@ -520,11 +522,11 @@ In convex feasibility setup, by analysis of how fast simulation converges on bes
 
 SAGA algorithm could be compared to Random Kaczmarz method on linear systems. It would be special case of setup in this work, without functions.\\
 
-Gradient-based iterative optimization methods could be slightly adjusted to converge to distance $d$ in rate $\mathcal{O}(\frac{1}{\sqrt{d}})$ iterations. It is called Nesterov's accelerated gradient method \cite{acceleration}, its idea may be applied to SAGA algorithm, leading to fwaster theoretical convergence rate. Experimental testing might be done to test its performance.\\
+Gradient-based iterative optimization methods could be slightly adjusted to converge to distance $d$ in rate $\mathcal{O}(\frac{1}{\sqrt{d}})$ iterations. It is called Nesterov's accelerated gradient method \cite{acceleration}, its idea may be applied to SAGA algorithm, leading to faster theoretical convergence rate. Experimental testing might be done to test its performance.\\
 
 \textbf{TODO dokoncit, po zverejneni konstantina}
 
-In article \cite{kosto} about ???, they considered optimization problem $$ \min_{x \in \R^n} \frac{1}{l}\sum_{i=1}^l f_i(x) + \lambda h(x),$$ where $h(x)=\frac{1}{2m}\sum_{j=1}^m ||x-\Pi_{X_j}(x)||^2$ (as we do in \ref{solvedProblem}). They suggested to dynamically change parameter $\lambda$ in the simulation, starting with bigger value, decreasing it over time. Experimentally they found out, that it should lead to faster convergence. It may be tested, how should the parameter $\lambda$ be decreased for optimal converge.
+In article \cite{kosto} about ???, they considered optimization problem $$ \min_{x \in \R^n} \frac{1}{l}\sum_{i=1}^l f_i(x) + \lambda h(x),$$ where $h(x)=\frac{1}{2m}\sum_{j=1}^m ||x-\Pi_{X_j}(x)||^2$ (as we do in \ref{solvedProblem}). They suggested to dynamically change parameter $\lambda$ in the simulation, starting with smaller value, increasing it over time. Experimentally they found out, that it should lead to faster convergence. It may be tested, how should the parameter $\lambda$ be decreased for optimal converge.
 
 
 
