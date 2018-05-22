@@ -308,13 +308,13 @@ Algorithm was successfully implemented and simulated, plenty of graphs were draw
 
 In every setup, distances of points $x^k$ in graph made line (from some point), thus distances were always decreasing exponentially.\\
 
-For $\tau=1$, we were projecting only on 1 line (or ball) each iteration. The iteration cost in this setup was lowest, however the convergence rate was slowest. There was no visible difference between setting $\omega$ as constant 1 or choosing best omega each in every iteration. It was caused by fact, that for $\tau=1$ were values of best omegas around $1$ (that was also fixed value of $\omega$).\\
+For $\tau=1$, we were projecting only on 1 line (or ball) each iteration. The iteration cost in this setup was lowest, however the convergence rate per iteration was slowest. There was no visible difference between setting $\omega$ as constant 1 or choosing best omega each in every iteration. It was caused by fact, that for $\tau=1$ were values of best omegas around $1$ (that was also fixed value of $\omega$).\\
 
-With increasing $\tau$ (for fixed $\omega$), simulation was converging a bit faster with each iteration (lines of graphs were steeper), but computation of one iteration was slower (because it is necessary to compute $\tau$ projections each iteration).
+With increasing $\tau$ (for fixed $\omega$), simulation was converging a bit faster each iteration (lines of graphs were steeper), but computation of one iteration was slower (because it is necessary to compute $\tau$ projections each iteration).
 
 Changing fixed $\omega$ to the best omega lead to huge convergence speedup. The convergence rate observed in practice was much faster then theoretical bound. However, in the simulation, best omegas were computed from the real projection point, thus it is not possible to use them for convergence speedup in practice.\\
 
-Setups with projecting on a ball in beginning of the simulation jumped into smaller distance, but after that, the converge rate was same (even a bit slower) as setup without projection on ball (with same $\tau$ and $\omega$). It is caused by the fact, that projecting on ball from outside of the ball lead to big distance reduction. Once point is inside in the ball, projecting on the ball makes no difference.
+Setups with projecting on a ball in beginning of the simulation jumped into smaller distance, but after that, the converge rate was same (even a bit slower) as setup without projection on ball (with same $\tau$ and $\omega$). It is caused by the fact, that projecting on ball from outside of the ball lead to big distance reduction. Once point is inside in the ball, projecting on the ball makes no difference (projection of point is the same as projected point - in this case each $\omega$ is best omega).
 
 Simulation showed, that current estimation of $\omega$ is not the best estimation in practice. Thus it might be possible to prove better estimation.
 
@@ -322,7 +322,7 @@ Simulation showed, that current estimation of $\omega$ is not the best estimatio
 
 In our setup, we were interested in $X$ to be set of solutions of linear system $Ax=b$ intersected with unit ball.
 
-We could also set $X$ to be set of solutions $x$ such as $Ax=I$, by solving convex feasibility problem we will finding inversion of matrix $A$.
+We could also set $X$ to be set of solutions $x$ such as $Ax=I$, hence by solving convex feasibility problem we will find inversion of matrix $A$.
 
 We may also set $X$ to be set of solutions $x$ such as $x=B$, for fixed matrix $B$. This problem is trivial, but it can also be solved using sketching, which can be viewed as a step of the Jacobian sketching for SAGA as mentioned in the introduction. It converges to distance $d$ in $\log(\frac{n}{d(n-1)})$\label{xIsB} iterations, where $n$ is dimension of $x$.\\
 
@@ -345,9 +345,9 @@ Problem is defined as following: Given a large set of functions $f_1,f_2,\cdots,
 
 Lets denote $F(x)=\frac{1}{l}\sum_{i=1}^l f_i(x)$, the problem is to minimize $F(x)$ also satisfying given constraints.\\
 
-Instead solving that problem, we will solve following problem: \label{solvedProblem}
+Instead solving that problem, we will solve following problem\cite{kosto}: \label{solvedProblem}
 $$ \min_{x \in \R^n} \frac{1}{l}\sum_{i=1}^l f_i(x) + \lambda h(x),$$
-where $h(x)=\frac{1}{2m}\sum_{j=1}^m ||x-\Pi_{X_j}(x)||^2$ and $\Pi_Y(x) = \min_{y \in Y} ||x-y||$\cite{kosto}. Lets denote $h_i(x)=||x-\Pi_{X_i}(x)||^2.$
+where $h(x)=\frac{1}{2m}\sum_{j=1}^m ||x-\Pi_{X_j}(x)||^2$ and $\Pi_Y(x) = \min_{y \in Y} ||x-y||$. Lets denote $h_i(x)=||x-\Pi_{X_i}(x)||^2.$
 
 Our new problem is optimization problem without constraints. It could be shown, that solution of new problem is approximate solution of previous problem, accuracy of approximation depends on parameter $\lambda$ (the bigger $\lambda$, more accurate solution). Thus minimization problem with constraints is reduced to minimization problem without constraints, if we assume convexity of functions $f_i$ and $h_i$, we could find solution using gradient descent:\\
 
@@ -387,8 +387,8 @@ Our algorithm is called SAGA, it will move according to average gradient of func
 
 Algorithm is in each step updating current point $x^k$, current estimate of gradients of all functions $f_i$ and all functions $h_i$ (in Jacobian $J$) and average of gradients $$\nabla F_{avr}= \frac{1}{l+m}\left( \sum_{i=1}^l \nabla f_i + \lambda\sum_{i=1}^m \nabla h_i \right).$$ In each step current point $x$ is used for better estimation of Jacobian and then current estimation of jacobian is used for step in gradient descent.\\
 
-This algorithm requires all functions $f_i$ and $h_i$ to be $\mu$-strongly convex and Lipschitz smooth with constant $L$ \cite{SAGA}. Former means, that for $\mu>0$ for all x, y holds $$\langle \nabla f(x) - \nabla f(y), (x-y) \rangle \geq \mu ||x-y||_2^2. $$
-Later means, that exists constant $L$, that for all x, y holds $$||\nabla f(x) - \nabla f(y)||_2 \leq L ||x-y||_2.$$ Both constants $\mu$ and $L$ bound, how much function values $\nabla f(x)$ could change by changing its argument.
+This algorithm requires all functions $f_i$ and $h_i$ to be $\mu$-strongly convex and Lipschitz smooth with constant $L$ \cite{SAGA}. $\mu$-strong convexity of function $g$ means, that for $\mu>0$ for all $x$, $y$ holds $$\langle \nabla g(x) - \nabla g(y), (x-y) \rangle \geq \mu ||x-y||_2^2. $$
+Lipschitz smoothness with constant $L$ of function $g$ means, that for all $x$, $y$ holds $$||\nabla g(x) - \nabla g(y)||_2 \leq L ||x-y||_2.$$ Both constants $\mu$ and $L$ bound, how much function values $\nabla f(x)$ could change by changing its argument.
 
 \begin{algorithm}[H]
 	\caption{SAGA \cite{SAGA}}
@@ -427,7 +427,7 @@ Later means, that exists constant $L$, that for all x, y holds $$||\nabla f(x) -
 
 \textbf{Remark:} SAGA algorithm with $\tau=l+m$ is gradient descent algorithm.\\
 
-Convergence rate of SAGA is referred as linear, it converges to distance $d$ with $\mathcal{O}(\log(\frac{1}{d}))$ iterations \cite{SAGA}, so it should converge almost as fast as gradient descent.\\
+Convergence rate of SAGA is referred as linear, it converges to distance $d$ with $\mathcal{O}(\log(\frac{1}{d}))$ iterations \cite{SAGA}, so it should converge as fast as gradient descent.\\
 
 \begin{figure}[H]
 	\centering
@@ -487,7 +487,7 @@ For minibatch size $\tau=1$ was experimentally optimal stepsize parameter $\alph
 
 With increasing $\tau$ number of gradient computation necessary to converge decreased, difference was $10\% - 66\%$ decrease of gradient computation.
 
-Ratio between gradient computation with theoretical and experimental stepsizes increased with increase in $\lambda$. For $\lambda <1$, ratio was less than $20\%$, for $\lambda=100$, it was $\sim 60\%$, for $\lambda=1000$, it was even more than $95\%$. It may be caused by uniform function sampling.\\
+Ratio between gradient computation with theoretical and experimental stepsizes increased with increase in $\lambda$. For $\lambda <1$, ratio was less than $20\%$, for $\lambda=100$, it was $\sim 60\%$, for $\lambda=1000$, it was even more than $95\%$. It may be caused by simulation setup and uniform function sampling.\\
 
 In this setup, theoretical value of $\alpha$ for $\tau$ lead to slower convergence rate. However, computing experimentally better parameters required much more computation than converging with theoretical parameters itself.
 
@@ -499,7 +499,7 @@ Let's look once again on sketching algorithm. We had convex set $X$ as set of so
 
 Later, in SAGA algorithm, we have been updating columns of Jacobian in each iteration. This update could be viewed as projecting old Jacobian to column of new Jacobian. It change only one column at time. This is exactly convex feasibility problem, that what we were doing before.
 
-We could take updating of Jacobian as convex feasibility sketching achieved by projecting old Jacobian to supersets (columns) of new Jacobian, we would like to find $x \in X$, where $X=Jacobian_{real}$. It is similar to problem of sketching problem $x=B$ \ref{xIsB}. However, in SAGA case, the real Jacobian is changing in each iteration, thus we were doing sketching on changing set in each iteration. The closer we are to optimum, the less real Jacobian is changing. With sufficiently small stepsize parameter, it converges to $0$.
+We could take updating of Jacobian as convex feasibility sketching achieved by projecting old Jacobian to supersets (columns) of new Jacobian, we would like to find $x \in X$, where $X=Jacobian_{real}$. It is similar to sketching problem $x=B$ \ref{xIsB}. However, in SAGA case, the real Jacobian is changing in each iteration, thus we were doing sketching on changing set in each iteration. The closer we are to optimum, the less real Jacobian is changing. With sufficiently small stepsize parameter, it converges to $0$.
 
 
 \section{Summary}
@@ -523,7 +523,7 @@ This work was meant to be for school course, due to the limited amount of time, 
 
 \item Gradient-based iterative optimization methods could be slightly adjusted to converge to distance $d$ in rate $\mathcal{O}(\frac{1}{\sqrt{d}})$ iterations. It is called Nesterov's accelerated gradient method \cite{acceleration}, its idea may be applied to SAGA algorithm, leading to faster theoretical convergence rate. Experimental testing might be done to test its performance.
 
-\item In article \cite{kosto}, they considered optimization problem $$ \min_{x \in \R^n} \frac{1}{l}\sum_{i=1}^l f_i(x) + \lambda h(x),$$ where $h(x)=\frac{1}{2m}\sum_{j=1}^m ||x-\Pi_{X_j}(x)||^2$ (as we do in \ref{solvedProblem}). They suggested to dynamically change parameter $\lambda$ in the simulation, starting with smaller value, increasing it over time. Experimentally they found out, that it should lead to faster convergence. It may be tested, how should the parameter $\lambda$ be decreased for optimal converge.
+\item In article \cite{kosto}, they considered optimization problem $$ \min_{x \in \R^n} \frac{1}{l}\sum_{i=1}^l f_i(x) + \lambda h(x),$$ where $h(x)=\frac{1}{2m}\sum_{j=1}^m ||x-\Pi_{X_j}(x)||^2$ (as we do in \ref{solvedProblem}). They suggested to dynamically change parameter $\lambda$ in the simulation, starting with smaller value, increasing it over time. Experimentally they found out, that it should lead to faster convergence. It may be tested, how should the parameter $\lambda$ be adjusted for optimal converge.
 \end{list}
 
 \bibliographystyle{unsrt}
