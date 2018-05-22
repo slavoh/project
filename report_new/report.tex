@@ -52,65 +52,80 @@
 \usepackage{filecontents}
 \begin{filecontents*}{trial.bib}
 	@article{projectionFeasibility,
-		author = {Ion Necoara, Peter Richtárik, Andrei Patrascu},
-		title = {Randomized projection methods for convex feasibility},
-		note = "\url{http://141.85.225.150/papers/feasibility.pdf}",
-		year = {2017}
+		author = {Ion Necoara and Peter Richt\'{a}rik and Andrei Patrascu},
+		title = {Randomized projection methods for convex feasibility problems: conditioning and convergence rates},
+		journal = {arXiv preprint arXiv:1801.04873},
+		%		note = "\url{http://141.85.225.150/papers/feasibility.pdf}",
+		year = {2018}
 	}
+	
 	@article{iterativeLinearSystems,
-		author = {Robert Mansel Gower, Peter Richtárik},
+		author = {Robert Mansel Gower and Peter Richt\'{a}rik},
 		title = {Randomized Iterative Methods for Linear Systems},
-		journaltitle = {SIAM Journal on Matrix Analysis and Applications},
-		note = "\url{http://epubs.siam.org/doi/abs/10.1137/15M1025487}",
+		journal = {SIAM Journal on Matrix Analysis and Applications},
+		volume = {36},
+		number= {4},
+		pages = {1660-1690},
+		%		note = "\url{http://epubs.siam.org/doi/abs/10.1137/15M1025487}",
 		year = {2015}
 	}
+	
 	@thesis{sketchAndProject,
 		author = {Robert Mansel Gower},
 		title = {Sketch and Project: Randomized Iterative Methods for Linear Systems and Inverting Matrices},
-		institution = {The University of Edinbourgh},
-		note = "\url{https://epubs.siam.org/doi/abs/10.1137/15M1025487}",
+		institution = {PhD Thesis, The University of Edinburgh},
 		year = {2016}
 	}
+	
 	@online{GD,
-		author = {RadhaKrishna Ganti},
+		author = {Radha Krishna Ganti},
 		title = {Convergence rate of gradient descent algorithm},
 		note = "\url{www.rkganti.wordpress.com/2015/08/21/convergence-rate-of-gradient-descent-algorithm/}",
 		year = {2015}
 	}
+	
 	@article{SGD,
-		author = {Simon Lacoste-Julien, Mark Schmidt, and Francis Bach},
+		author = {Simon Lacoste-Julien and Mark Schmidt and Francis Bach},
 		title = {A simpler approach to obtaining an $\mathcal{O}(1/t)$ convergence rate	for the projected stochastic subgradient method},
-		note = "\url{www.arxiv.org/pdf/1212.2002v2.pdf}",
+		journal = {arXiv preprint arXiv:1212.2002},
 		year = {2012}
 	}
-	@article{SAGA,
+	
+	@inproceedings{SAGA,
 		author = {Aaron Defazio, Francis Bach},
-		title = {SAGA: A Fast Incremental Gradient Method With Support for Non-Strongly Convex Composite Objectives},
-		note = "\url{www.di.ens.fr/~fbach/Defazio_NIPS2014.pdf}",
+		title = {{SAGA}: A Fast Incremental Gradient Method With Support for Non-Strongly Convex Composite Objectives},
+		booktitle = {Neural Information Processing Systems},
 		year = {2014}
 	}
+	
 	@article{kaczmarz,
-		author = {Thomas Strohmer, Roman Vershynin},
-		title = { randomized Kaczmarz algorithm with exponential convergence},
-		note = "\url{www.arxiv.org/pdf/math/0702226.pdf}",
-		year = {2007}
+		author = {Thomas Strohmer and Roman Vershynin},
+		title = {A randomized {K}aczmarz algorithm with exponential convergence},
+		journal = {Journal of Fourier Analysis and Applications},
+		volume = {15},
+		pages = {262--278},
+		year = {2009}
 	}
+	
 	@article{acceleration,
-		author = {Aleksandar Botev, Guy Lever, David Barber},
+		author = {Aleksandar Botev and Guy Lever and David Barber},
 		title = {Nesterov’s Accelerated Gradient and Momentum as approximations to Regularised Update Descent},
-		note = "\url{www.arxiv.org/pdf/1607.01981.pdf}",
+		journal = {arXiv preprint arXiv:1607.01981},
 		year = {2016}
 	}
+	
 	@article{kosto,
-		author = {Konstantin Mishchenko, Peter Richtárik},
+		author = {Konstantin Mishchenko and Peter Richt\'{a}rik},
 		title = {A Stochastic Penalty Model for Convex and Nonconvex Optimization with Big Constraints},
+		journal = {Manuscript},
 		note = "\url{http://epostersonline.com/obd2018/node/65}",
 		year = {2018}
 	}
+	
 	@article{jacobianSketching,
-		author = {Robert M. Gower, Peter Richtárik, Francis Bach},
+		author = {Robert M. Gower and Peter Richt\'{a}rik and Francis Bach},
 		title = {Stochastic Quasi-Gradient Methods: Variance Reduction via Jacobian Sketching},
-		note = "\url{https://arxiv.org/abs/1805.02632}",
+		journal = {arXiv preprint arXiv:1805.02632},
 		year = {2018}
 	}
 \end{filecontents*}
@@ -380,7 +395,9 @@
 	
 	Convex feasibility problem can be viewed as minimization problem over set $X$, find $$\argmin_{x \in X} 0.$$
 	
-	It may also be reformulated as stochastic optimization problem \cite{sketchAndProject}: $$\text{minimize } f(x)=\E_{S \sim D}[f_S(x)],$$ where $$f_S(x) = \frac{1}{2}||x-\Pi_{x^S}(x)||^2.$$
+	It may also be reformulated as stochastic optimization problem \cite{sketchAndProject}: $$\text{minimize } f(x)=\E_{S \sim D}[f_S(x)],$$ where $$f_S(x) = \frac{1}{2}||x-\Pi_S(x)||^2.$$
+	
+	
 	Stochastic gradient descent on latter problem does the same as sketching algorithm on original problem.\\
 	
 	We have got algorithm, that can find some point in convex set. However, it can find arbitrary point near to set $X$. If points in $X$ are not equally good for us, we need to do something different. We may assign values to points (using some function) and then minimize that function. Let's suppose, that we want to find point in $X$, that also minimizes sum of large number of simple functions over $X$, we would like to find $$\argmin_{x \in X} F(x),$$ where $F(x)=\sum_{i=1}^{l}f_i(x).$
@@ -544,7 +561,7 @@
 	
 	\section{Jacobian sketching}
 	
-	Let's look once again on sketching algorithm. We had convex set $X$ as set of solutions $x$ in $Ax=b$. In each step, we were projecting point $x^k$ on superset of $X$, that had form of rows of matrix $A$.
+	Let us look once again at the stochastic projection method. We had convex set $X$ as set of solutions $x$ in $Ax=b$. In each step, we were projecting point $x^k$ on superset of $X$, that had form of rows of matrix $A$.
 	
 	Later, in SAGA algorithm, we have been updating columns of Jacobian in each iteration. This update could be viewed as projecting old Jacobian to column of new Jacobian. It change only one column at time. This is exactly convex feasibility problem, that what we were doing before.
 	
